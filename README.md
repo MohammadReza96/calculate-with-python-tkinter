@@ -1,2 +1,2 @@
 # calculate_with_tkinter
-creating calculator app with tkinter GUI  ( class type , function type , exe type )
+A calculator app which is created by Python , Tkinter library  ( class type , function type , exe type )
