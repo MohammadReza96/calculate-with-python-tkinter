@@ -47,7 +47,6 @@ def times(number):
     except ValueError:
         first_number=myentry_1.get()
         
-    # first_number=float(myentry_1.get())
     n1=first_number
     sign="times"
     myentry_1.delete(0,END)
@@ -61,7 +60,6 @@ def divide(number):
         first_number=float(myentry_1.get())
     except ValueError:
         first_number=myentry_1.get()
-    # first_number=float(myentry_1.get())
     n1=first_number
     sign="divide"
     myentry_1.delete(0,END)

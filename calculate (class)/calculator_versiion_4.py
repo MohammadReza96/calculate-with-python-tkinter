@@ -3,7 +3,6 @@ from tkinter import *
 import os
 os.system('cls')
 #-----------------------------------------------------------------------
-
 class Calculator:
     number1=0
     sign=""
@@ -11,11 +10,11 @@ class Calculator:
         self.main_window=Tk()
         self.main_window.title("Calculator (Ver1)")
         self.myentry_1=Entry(self.main_window,borderwidth=5,width=35)
-        #-----------------------------------------------------label main
+        #----------------------------------------------------------- label main
         self.label_1=Label(self.main_window,text="cacio",fg="#000000",padx=10,pady=5)
-        #-------------------------------------------------stick label main
+        #----------------------------------------------------------- stick label main
         self.label_1.grid(row=0,column=3)
-        #-----------------------------------------------------buttons
+        #----------------------------------------------------------- buttons
         self.button_1=Button(self.main_window,text=1,width=4,padx=20,pady=10)
         self.button_2=Button(self.main_window,text=2,width=4,padx=20,pady=10)
         self.button_3=Button(self.main_window,text=3,width=4,padx=20,pady=10)
@@ -26,7 +25,7 @@ class Calculator:
         self.button_8=Button(self.main_window,text=8,width=4,padx=20,pady=10)
         self.button_9=Button(self.main_window,text=9,width=4,padx=20,pady=10)
         self.button_0=Button(self.main_window,text=0,width=4,padx=20,pady=10)
-        #-------------------------------------------------stick buttons1
+        #----------------------------------------------------------- stick buttons1
         self.button_1.grid(row=1,column=0)
         self.button_2.grid(row=1,column=1)
         self.button_3.grid(row=1,column=2)
@@ -37,7 +36,7 @@ class Calculator:
         self.button_8.grid(row=3,column=1)
         self.button_9.grid(row=3,column=2)
         self.button_0.grid(row=4,column=0)
-        #-------------------------------------------------buttons (clear = + - * /)
+        #----------------------------------------------------------- buttons (clear = + - * /)
         self.button_clear=Button(self.main_window,text="clear",width=4,padx=20,pady=10)
         self.button_equal=Button(self.main_window,text="=",width=4,padx=20,pady=10)
         self.button_plus=Button(self.main_window,text='+',width=4,padx=20,pady=10)
@@ -45,14 +44,14 @@ class Calculator:
         self.button_divide=Button(self.main_window,text='/',width=4,padx=20,pady=10)
         self.button_times=Button(self.main_window,text='*',width=4,padx=20,pady=10)
         self.myentry_1.grid(row=0,column=0,columnspan=3,padx=5,pady=5)
-        #-------------------------------------------------stick buttons2
+        #----------------------------------------------------------- stick buttons2
         self.button_clear.grid(row=4,column=1)
         self.button_equal.grid(row=4,column=2)
         self.button_plus.grid(row=1,column=3)
         self.button_minus.grid(row=2,column=3)
         self.button_times.grid(row=3,column=3)
         self.button_divide.grid(row=4,column=3)
-        #--------------------------------------------------bind functions numbers
+        #----------------------------------------------------------- bind functions numbers
         (self.button_1).bind("<Button>",self.buttom_click1)
         (self.button_2).bind("<Button>",self.buttom_click2)
         (self.button_3).bind("<Button>",self.buttom_click3)
@@ -63,7 +62,7 @@ class Calculator:
         (self.button_8).bind("<Button>",self.buttom_click8)
         (self.button_9).bind("<Button>",self.buttom_click9)
         (self.button_0).bind("<Button>",self.buttom_click0)
-        #--------------------------------------------------bind functions animations (enter leave)
+        #----------------------------------------------------------- bind functions animations (enter leave)
         self.button_0.bind("<Enter>",self.func0)
         self.button_0.bind("<Leave>",self.func00)
         self.button_1.bind("<Enter>",self.func1)
@@ -97,18 +96,16 @@ class Calculator:
         self.button_clear.bind("<Leave>",self.funcc1)
         self.button_equal.bind("<Enter>",self.funce)
         self.button_equal.bind("<Leave>",self.funce1)
-        #--------------------------------------------------bind functions (clear + - * / =)
+        #----------------------------------------------------------- bind functions (clear + - * / =)
         self.button_plus.bind("<Button>",self.plus)
         self.button_minus.bind("<Button>",self.minus)
         self.button_times.bind("<Button>",self.times)
         self.button_divide.bind("<Button>",self.divide)
         self.button_equal.bind("<Button>",self.equal)
         self.button_clear.bind("<Button>",self.clear)
-
-
-
+        #-----------------------------------------------------------
         self.main_window.mainloop()
-        #----------------------------------------------functions (clear + - * / =)
+    #----------------------------------------------------------- functions (clear + - * / =)
     def buttom_click1(self,event):
         current_number=self.myentry_1.get()
         self.myentry_1.delete(0,END)
@@ -149,7 +146,7 @@ class Calculator:
         current_number=self.myentry_1.get()
         self.myentry_1.delete(0,END)
         self.myentry_1.insert(0,str(current_number)+str(0))
-        #----------------------------------------------functions aimations (enter leave)
+    #----------------------------------------------------------- functions aimations (enter leave)
     def func0(self,event):
         self.button_0.config(bg="#F18F01",fg="#ffffff")
     def func00(self,event):
@@ -190,7 +187,7 @@ class Calculator:
         self.button_9.config(bg="#F18F01",fg="#000000")
     def func99(self,event):
         self.button_9.config(bg="#f0f0f0",fg="#000000")
-
+    #-----------------------------------------------------------
     def funcp(self,event):
         self.button_plus.config(bg="#F18F01",fg="#000000")
     def funcp1(self,event):
@@ -215,29 +212,41 @@ class Calculator:
         self.button_clear.config(bg="#F18F01",fg="#000000")
     def funcc1(self,event):
         self.button_clear.config(bg="#f0f0f0",fg="#000000")
-    #----------------------------------------------functions (clear + - * / = )
+    #----------------------------------------------------------- functions (clear + - * / = )
     def plus(self,event):
         self.label_1.config(text="plus")
-        first_number=(self.myentry_1.get())
-        Calculator.number1=float(first_number)
+        try:
+            first_number=float(self.myentry_1.get())
+        except ValueError:
+            first_number=self.myentry_1.get()
+        Calculator.number1=first_number
         Calculator.sign="plus"
         self.myentry_1.delete(0,END)
     def minus(self,event):
         self.label_1.config(text="minus")
-        first_number=(self.myentry_1.get())
-        Calculator.number1=float(first_number)
+        try:
+            first_number=float(self.myentry_1.get())
+        except ValueError:
+            first_number=self.myentry_1.get()
+        Calculator.number1=first_number
         Calculator.sign="minus"
         self.myentry_1.delete(0,END)
     def times(self,event):
         self.label_1.config(text="times")
-        first_number=(self.myentry_1.get())
-        Calculator.number1=float(first_number)
+        try:
+            first_number=float(self.myentry_1.get())
+        except ValueError:
+            first_number=self.myentry_1.get()
+        Calculator.number1=first_number
         Calculator.sign="times"
         self.myentry_1.delete(0,END)
     def divide(self,event):
         self.label_1.config(text="divide")
-        first_number=(self.myentry_1.get())
-        Calculator.number1=float(first_number)
+        try:
+            first_number=float(self.myentry_1.get())
+        except ValueError:
+            first_number=self.myentry_1.get()
+        Calculator.number1=first_number
         Calculator.sign="divide"
         self.myentry_1.delete(0,END)
     def equal(self,event):
@@ -245,18 +254,55 @@ class Calculator:
         secend_number=self.myentry_1.get()
         self.myentry_1.delete(0,END)
         if Calculator.sign=="plus":
-            self.myentry_1.insert(0,Calculator.number1+float(secend_number))
+            try:
+                if int(secend_number) and Calculator.number1=='infinite ...':
+                    res='infinite ...'
+                elif int(secend_number) and Calculator.number1=='impossible ...':
+                    res='impossible ...'
+                else:
+                    res=Calculator.number1+float(secend_number)
+            except TypeError:
+                res='impossible ...'
+            self.myentry_1.insert(0,res)
         elif Calculator.sign=="minus":
-            self.myentry_1.insert(0,Calculator.number1-float(secend_number))
+            try:
+                if int(secend_number) and Calculator.number1=='infinite ...':
+                    res='infinite ...'
+                elif int(secend_number) and Calculator.number1=='impossible ...':
+                    res='impossible ...'
+                else:
+                    res=Calculator.number1-float(secend_number)
+            except TypeError:
+                res='impossible ...'
+            self.myentry_1.insert(0,res)
         elif Calculator.sign=="times":
-            self.myentry_1.insert(0,Calculator.number1*float(secend_number))
+            try:
+                if int(secend_number)==0 and Calculator.number1=='infinite ...':
+                    res=0
+                elif int(secend_number) and Calculator.number1=='infinite ...':
+                    res='infinite ...'
+                elif int(secend_number) and Calculator.number1=='impossible ...':
+                    res='impossible ...'
+                else:
+                    res=Calculator.number1*float(secend_number)
+            except TypeError:
+                res='impossible ...'
+            self.myentry_1.insert(0,res)
         else:
-            self.myentry_1.insert(0,Calculator.number1/float(secend_number))
+            try:
+                res=Calculator.number1/float(secend_number)
+            except ZeroDivisionError:
+                res='infinite ...'
+            except ValueError:
+                res='impossible ...'
+            except TypeError:
+                res='impossible ...'
+            self.myentry_1.insert(0,res)
         Calculator.sign=""
     def clear(self,event):  
         self.label_1.config(text="clear")
         self.myentry_1.delete(0,END)
-    #------------------------------------------------------function (enter leave)
+    #----------------------------------------------------------- function (enter leave)
     def func0(self,event):
         self.button_0.config(bg="#F18F01",fg="#ffffff")
     def func00(self,event):
@@ -297,7 +343,7 @@ class Calculator:
         self.button_9.config(bg="#F18F01",fg="#000000")
     def func99(self,event):
         self.button_9.config(bg="#f0f0f0",fg="#000000")
-    #------------------------------------------------------------- + / - / * / "/" / clear / equal    enter & leave ravadid
+    #----------------------------------------------------------- + / - / * / "/" / clear / equal    enter & leave ravadid
     def funcp(self,event):
         self.button_plus.config(bg="#F18F01",fg="#000000")
     def funcp1(self,event):
@@ -322,6 +368,5 @@ class Calculator:
         self.button_clear.config(bg="#F18F01",fg="#000000")
     def funcc1(self,event):
         self.button_clear.config(bg="#f0f0f0",fg="#000000")
-
-
+#-----------------------------------------------------------
 cal=Calculator()
